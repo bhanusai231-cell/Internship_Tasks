@@ -1,9 +1,20 @@
 # Collections.Counter()
 # https://www.hackerrank.com/challenges/collections-counter/problem
+from collections import Counter
+
 n = int(input())
-arr = list(map(int, input().split()))
+shoes = list(map(int, input().split()))
 
-unique_scores = set(arr)
-unique_scores.remove(max(unique_scores))
+inventory = Counter(shoes)
 
-print(max(unique_scores))
+customers = int(input())
+total = 0
+
+for _ in range(customers):
+    size, price = map(int, input().split())
+
+    if inventory[size] > 0:
+        total += price
+        inventory[size] -= 1
+
+print(total)
